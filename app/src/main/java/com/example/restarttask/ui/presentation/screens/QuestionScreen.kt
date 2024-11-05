@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Mic
@@ -34,14 +37,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.restarttask.R
 import com.example.restarttask.ui.presentation.common_components.AppBar
 import com.example.restarttask.ui.presentation.common_components.BlurredShape
+import com.example.restarttask.ui.presentation.screens.event_screen_card.Event
+import com.example.restarttask.ui.presentation.screens.event_screen_card.EventsCard
 import com.example.restarttask.ui.presentation.screens.question_screens_items.TwoColumnCategoriesList
 import com.example.restarttask.ui.presentation.theme.RestartTaskTheme
+import java.util.Date
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.drawUnderline(): Modifier {
@@ -72,7 +80,7 @@ fun QuestionScreen(
             .background(color = Color.White),
         topBar = {
             AppBar(
-                title =(R.string.questions),
+                title = (R.string.questions),
                 showBackButton = false
             )
         }
@@ -96,7 +104,7 @@ fun QuestionScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         TextButton(onClick = { isWritingActive = true }) {
-                            Row{
+                            Row {
                                 Icon(Icons.Default.Edit, contentDescription = "Writing")
                                 Spacer(modifier = Modifier.width(2.dp))
                                 Text(
@@ -112,25 +120,25 @@ fun QuestionScreen(
                             }
                         }
 
-                        }
-                        TextButton(onClick = { isWritingActive = false }) {
-                            Row{
-                                Icon(Icons.Default.Mic, contentDescription = "Oral")
-                                Spacer(modifier = Modifier.width(2.dp))
-                                Text(
-                                    "Oral",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = Color(0xFF0F5252),
-                                    modifier = Modifier
-                                        .padding(bottom = 2.dp)
-                                        .then(
-                                            if (!isWritingActive) Modifier.drawUnderline() else Modifier
-                                        )
-                                )
-                            }
-                        }
-
                     }
+                    TextButton(onClick = { isWritingActive = false }) {
+                        Row {
+                            Icon(Icons.Default.Mic, contentDescription = "Oral")
+                            Spacer(modifier = Modifier.width(2.dp))
+                            Text(
+                                "Oral",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color(0xFF0F5252),
+                                modifier = Modifier
+                                    .padding(bottom = 2.dp)
+                                    .then(
+                                        if (!isWritingActive) Modifier.drawUnderline() else Modifier
+                                    )
+                            )
+                        }
+                    }
+
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -138,8 +146,11 @@ fun QuestionScreen(
                     Button(onClick = { /* Task 1 action */ }) {
                         Text(stringResource(R.string.task_1), color = Color.White)
                     }
-                    Button(onClick = { /* Task 2 action */ }, colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary)) {
-                        Text(stringResource(R.string.task_2) , color = Color.White)
+                    Button(
+                        onClick = { /* Task 2 action */ },
+                        colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary)
+                    ) {
+                        Text(stringResource(R.string.task_2), color = Color.White)
                     }
                 }
 
@@ -149,39 +160,75 @@ fun QuestionScreen(
                 if (isWritingActive) {
                     TwoColumnCategoriesList()
                 } else {
-                    // Placeholder for Oral content
-                    Text(
-                        "Oral content goes here.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF0F5252),
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    val dummyData = listOf(
+                        Event(
+                            "Events", "Task 1",
+                            stringResource(R.string.topics_1) +
+                                    stringResource(R.string.topics_2), 10, Date()
+                        ),
+                        Event(
+                            "Technology",
+                            "Task 1",
+                            stringResource(R.string.topics_3),
+                            15,
+                            Date()
+                        ),
+                        Event("Event 3", "Task 3", stringResource(R.string.topics_4), 5, Date())
                     )
-                }
-            }
 
-            // BlurredShape positioned at the top end corner
-            BlurredShape(
-                modifier = Modifier
-                    .offset(y = (-20).dp, x = 150.dp)
-                    .height(500.dp)
-                    .align(Alignment.TopEnd) // Align to top end
-            )
+                    Column {
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.05f),
+                                    shape = MaterialTheme.shapes.extraSmall
+                                )
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
+
+                        )
+                        {
+                            Row {
+                                Text(
+                                    "Filter",
+                                    fontSize = 14.sp,
+                                    color = MaterialTheme.colorScheme.onError
+                                )
+                                Icon(
+                                    painter = painterResource(R.drawable.baseline_filter_list_24),
+                                    contentDescription = "Filter",
+                                )
+                            }
+                        }
+
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            items(dummyData) { data ->
+                                EventsCard(
+                                    event = data.event,
+                                    task = data.task,
+                                    topic = data.topic,
+                                    answers = data.answers,
+                                    date = data.date
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+
+                // BlurredShape positioned at the top end corner
+
+            }
         }
     }
-
-
 }
 
 
 
-@Preview
-@Composable
-private fun QuestionsPrev() {
-    RestartTaskTheme {
-        QuestionScreen()
-    }
 
-}
 
 
 

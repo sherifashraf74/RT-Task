@@ -58,7 +58,7 @@ fun CardItem(
                 // Circular badge for the first two letters
                 Box(
                     modifier = Modifier
-                        .size(45.dp) // Increased size for better visibility
+                        .size(45.dp)
                         .background(color = MaterialTheme.colorScheme.primary, shape = CircleShape)
                         .wrapContentSize(Alignment.Center)
                 ) {

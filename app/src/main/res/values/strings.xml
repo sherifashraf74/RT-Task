@@ -5,4 +5,9 @@
     <string name="questions">Questions</string>
     <string name="task_2">Task 2</string>
     <string name="task_1">Task 1</string>
+    <string name="topics_1">Je suis votre collègue, je participe chaque année à une course à pieds pour célébrer le printemps.Vous êtes\n</string>
+    <string name="topics_2">intéressé. Vous me posez des questions pour avoir des informations (parcours, durée, participants, etc.)</string>
+    <string name="topics_3">Quand quelqu\'un quitte son pays pour aller vivre ailleurs, c\'est souvent parce qu\'il n\'a pas d\'autre choix. Qu\'en pensez- vous ?</string>
+    <string name="topics_4">What are the advantages and disadvantages of a multicultural society?</string>
+    <string name="suggested_study_partners">Suggested Study Partners</string>
 </resources>
