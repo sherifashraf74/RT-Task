@@ -5,9 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,36 +36,108 @@ fun CardItem(
     location: String,
     gender: Gender,
     age: Int,
-    expirationDate: String
+    date: String
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
         shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = Color.White) ,
+        elevation =  CardDefaults.cardElevation(defaultElevation = 8.dp)
+
 
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text(text = name, style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
-            Text(text = "Last seen online: $lastSeen")
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Circular badge for the first two letters
+                Box(
+                    modifier = Modifier
+                        .size(45.dp) // Increased size for better visibility
+                        .background(color = MaterialTheme.colorScheme.primary, shape = CircleShape)
+                        .wrapContentSize(Alignment.Center)
+                ) {
+                    Text(
+                        text = name.take(2), // Get the first two letters
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    )
+                }
 
-            if (targetingB1) {
-                Box (modifier = Modifier.background(color = MaterialTheme.colorScheme.primary
-                    , shape = MaterialTheme.shapes.extraSmall)){
-                    Text(text = "Targeting: B1", color = Color.White) }
+                Spacer(modifier = Modifier.width(10.dp)) // Space between the badge and name
+
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Text(
+                        text = name,
+                        style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                        modifier = Modifier.weight(1f)
+                    )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        if (targetingB1) {
+                            Box(
+                                modifier = Modifier
+                                    .background(color = MaterialTheme.colorScheme.primary, shape = MaterialTheme.shapes.extraSmall)
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                            ) {
+                                Text(
+                                    text = "Targeting: B1",
+                                    color = Color.White,
+                                    style = TextStyle(fontSize = 12.sp)
+                                )
+                            }
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                    text = "Last seen online: $lastSeen",
+                    style = TextStyle(fontSize = 12.sp, fontFamily = MaterialTheme.typography.titleSmall.fontFamily , color = Color.Gray)
+                )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(5.dp)
+                    ) {
+                        languages.forEach { language ->
+                            // Language Box
+                            Row(
+                                modifier = Modifier
+                                    .background(color = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f), shape = MaterialTheme.shapes.small)
+                                    .padding(6.dp), // Inner padding for text
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                // Language Badge
+                                Box(
+                                    modifier = Modifier
+                                        .wrapContentSize(Alignment.Center)
+                                ) {
+                                    Text(
+                                        text = language,
+                                        style = TextStyle(fontSize = 12.sp, fontFamily = MaterialTheme.typography.titleSmall.fontFamily , color = MaterialTheme.colorScheme.onError)
+                                    )
+                                }
+
+                            }
+                        }
+
+                    }
+                }
 
             }
-            Row (   modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween ){
-                Text(text = languages.joinToString(", "))
-                Text(text = "$location, $gender, $age")
-            }
-
-            Text(text = "Expires on: $expirationDate")
+            Text(
+                text = "$location, $gender, $age, $date",
+                style = TextStyle(fontSize = 12.sp, fontFamily = MaterialTheme.typography.titleSmall.fontFamily , color = Color.Gray)
+            )
         }
     }
 }
@@ -67,6 +145,7 @@ fun CardItem(
 enum class Gender {
     Male, Female
 }
+
 
 @Preview
 @Composable
@@ -79,7 +158,7 @@ private fun CardPreview() {
             location = "Egypt",
             languages = listOf("English","Arabic","French"),
             targetingB1 = true,
-            expirationDate = "s" )
+            date = "21 Jun 2023" )
 
     }
 
