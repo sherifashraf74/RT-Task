@@ -6,9 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.restarttask.ui.presentation.screens.ConnectScreen
-import com.example.restarttask.ui.presentation.screens.HomeScreen
-import com.example.restarttask.ui.presentation.screens.QuestionScreen
+import com.example.restarttask.ui.presentation.navigation.MainApp
 import com.example.restarttask.ui.presentation.theme.RestartTaskTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RestartTaskTheme {
-                QuestionScreen()
+                MainApp()
                 }
             }
         }

@@ -1,10 +1,10 @@
 package com.example.restarttask.ui.presentation.navigation
 
-sealed class Screens(val route: String){
-    data object Home : Screens("home")
-    data object Connect : Screens("connect")
-    data object Questions : Screens("questions")
-    data object Tools : Screens("tools")
-    data object Profile : Screens("profile")
+object Routes {
+    const val Welcome = "welcome"
+    const val Home = "home"
+    const val Connect = "connect"
+    const val Questions = "questions"
+    const val Tools = "tools"
+    const val Profile = "profile"
 }
-

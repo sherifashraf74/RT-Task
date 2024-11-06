@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.restarttask.R
 import com.example.restarttask.ui.presentation.common_components.AppBar
 import com.example.restarttask.ui.presentation.common_components.BlurredShape
@@ -35,6 +36,7 @@ import com.example.restarttask.ui.presentation.theme.RestartTaskTheme
 @Composable
 fun ConnectScreen(
     modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     Scaffold(
         modifier = modifier
@@ -57,7 +59,8 @@ fun ConnectScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .padding(bottom = 25.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(text = stringResource(R.string.suggested_study_partners), style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold))
@@ -94,12 +97,12 @@ fun ConnectScreen(
     }
 }
 
-
-@Preview
-@Composable
-private fun ConnectScreenPrev() {
-    RestartTaskTheme {
-        ConnectScreen()
-    }
-
-}
+//
+//@Preview
+//@Composable
+//private fun ConnectScreenPrev() {
+//    RestartTaskTheme {
+//        ConnectScreen()
+//    }
+//
+//}

@@ -1,6 +1,5 @@
 package com.example.restarttask.ui.presentation.screens
 
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -10,13 +9,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.restarttask.ui.presentation.navigation.Routes
 import com.example.restarttask.ui.presentation.screens.welcome_screen_items.saveFullName
-import com.example.restarttask.ui.presentation.theme.RestartTaskTheme
 
 @Composable
-fun NameInputScreen() {
+fun NameInputScreen(
+    navController: NavHostController,
+) {
     val context = LocalContext.current
 
     var firstName by remember { mutableStateOf(TextFieldValue("")) }
@@ -57,6 +58,7 @@ fun NameInputScreen() {
                 // Save the full name in SharedPreferences
                 saveFullName(context, concatenatedName)
                 fullName = concatenatedName
+                navController.navigate(Routes.Home)
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -68,11 +70,3 @@ fun NameInputScreen() {
     }
 }
 
-@Preview
-@Composable
-private fun WelcomePreview() {
-    RestartTaskTheme {
-        NameInputScreen()
-    }
-
-}

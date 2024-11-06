@@ -42,6 +42,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.restarttask.R
 import com.example.restarttask.ui.presentation.common_components.AppBar
 import com.example.restarttask.ui.presentation.common_components.BlurredShape
@@ -72,6 +73,7 @@ fun Modifier.drawUnderline(): Modifier {
 @Composable
 fun QuestionScreen(
     modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     var isWritingActive by remember { mutableStateOf(true) }
     Scaffold(
@@ -201,7 +203,9 @@ fun QuestionScreen(
                         }
 
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 25.dp),
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             items(dummyData) { data ->

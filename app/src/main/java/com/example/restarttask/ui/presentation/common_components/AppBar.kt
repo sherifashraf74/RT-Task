@@ -31,7 +31,7 @@ fun AppBar(
     @StringRes title: Int,
     modifier: Modifier = Modifier,
     titleStyle: TextStyle = MaterialTheme.typography.titleLarge,
-    showBackButton: Boolean = true,
+    showBackButton: Boolean = false,
     onBackButtonClicked: () -> Unit = {}
 ) {
     TopAppBar(
