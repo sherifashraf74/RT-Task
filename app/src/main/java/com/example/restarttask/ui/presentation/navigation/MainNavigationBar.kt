@@ -31,18 +31,41 @@ fun MainNavigationBar(
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
+        val selectedColor = Color(0xFF21B6B6)
+        val unselectedColor = Color(0xFF9CA3AF)
+
         val navItems = listOf(
-            NavigationItem(Routes.Home, R.drawable.home_icon_active, R.drawable.home_icon_not_active, "Home"),
-            NavigationItem(Routes.Connect, R.drawable.connect_icon_active, R.drawable.connect_icon_not_active, "Connect"),
-            NavigationItem(Routes.Questions, R.drawable.question_icon_active, R.drawable.question_icon_not_active, "Question"),
-            NavigationItem(Routes.Tools, R.drawable.tool_icon_active, R.drawable.tools_icon_not_active, "Tools"),
-            NavigationItem(Routes.Profile, R.drawable.profile_icon_active, R.drawable.profile_icon_not_active, "Profile")
+            NavigationItem(
+                route = Routes.Home,
+                icon = R.drawable.home_icon_not_active,
+                label = "Home"
+            ),
+            NavigationItem(
+                route = Routes.Connect,
+                icon = R.drawable.connect_icon_not_active,
+                label = "Connect"
+            ),
+            NavigationItem(
+                route = Routes.Questions,
+                icon = R.drawable.question_icon_not_active,
+                label = "Question"
+            ),
+            NavigationItem(
+                route = Routes.Tools,
+                icon = R.drawable.tools_icon_not_active,
+                label = "Tools"
+            ),
+            NavigationItem(
+                route = Routes.Profile,
+                icon = R.drawable.profile_icon_not_active,
+                label = "Profile"
+            )
         )
 
-
         navItems.forEach { item ->
+            val isSelected = currentRoute == item.route
             NavigationBarItem(
-                selected = currentRoute == item.route,
+                selected = isSelected,
                 onClick = {
                     if (currentRoute != item.route) {
                         navController.navigate(item.route) {
@@ -53,23 +76,24 @@ fun MainNavigationBar(
                 },
                 icon = {
                     Icon(
-                        painter = painterResource(id = if (currentRoute == item.route) item.activeIcon else item.inactiveIcon),
-                        contentDescription = item.label
+                        painter = painterResource(id = item.icon),
+                        contentDescription = item.label,
+                        tint = if (isSelected) selectedColor else unselectedColor
                     )
                 },
                 label = {
                     Text(
                         text = item.label,
                         fontSize = 10.sp,
-                        color = if (currentRoute == item.route) Color(0xFF21B6B6) else Color(0xFF9CA3AF),
+                        color = if (isSelected) selectedColor else unselectedColor,
                         fontFamily = MaterialTheme.typography.titleSmall.fontFamily
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Unspecified,
                     unselectedIconColor = Color.Unspecified,
-                    selectedTextColor = Color(0xFF21B6B6),  // Color when selected
-                    unselectedTextColor = Color(0xFF9CA3AF), // Color when not selected
+                    selectedTextColor = selectedColor,
+                    unselectedTextColor = unselectedColor,
                     indicatorColor = Color.Transparent
                 ),
                 alwaysShowLabel = true
@@ -80,7 +104,6 @@ fun MainNavigationBar(
 
 data class NavigationItem(
     val route: String,
-    val activeIcon: Int,
-    val inactiveIcon: Int,
+    val icon: Int,
     val label: String
 )

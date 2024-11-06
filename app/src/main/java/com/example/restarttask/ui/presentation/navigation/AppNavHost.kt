@@ -1,14 +1,14 @@
 package com.example.restarttask.ui.presentation.navigation
 
-import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainApp(
     modifier: Modifier = Modifier
@@ -25,7 +25,9 @@ fun MainApp(
         Routes.Tutorial4,
         Routes.Tutorial5
     )
+
     Scaffold(
+        modifier = modifier,
         bottomBar = {
             if (currentRoute !in hideBottomBarRoutes) {
                 if (currentRoute != null) {
@@ -33,8 +35,12 @@ fun MainApp(
                 }
             }
         }
-    )
-    {
-        MainNavGraph(navController = navController)
+    ) { paddingValues ->
+        MainNavGraph(
+            navController = navController,
+            modifier = Modifier.padding(
+                bottom = if (currentRoute !in hideBottomBarRoutes) paddingValues.calculateBottomPadding() else 0.dp
+            )
+        )
     }
 }

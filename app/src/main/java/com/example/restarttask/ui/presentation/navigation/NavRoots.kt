@@ -3,6 +3,7 @@
 package com.example.restarttask.ui.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,10 +21,12 @@ import com.example.restarttask.ui.presentation.screens.QuestionScreen
 import com.example.restarttask.ui.presentation.screens.ToolsScreen
 
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph(navController: NavHostController,
+                 modifier: Modifier=Modifier) {
     NavHost(
         navController = navController,
-        startDestination = Routes.Welcome
+        startDestination = Routes.Welcome,
+        modifier = modifier
     ) {
         composable(Routes.HomeTutorial) {
             HomeTutorial(navController = navController)
