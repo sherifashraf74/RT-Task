@@ -13,5 +13,5 @@ Welcome to my submission for the Android Developer assignment at Restart Technol
 ---
 
 ### 🔗 Links
-- **Portfolio**: [Sherif Ashraf's Profile](https://github.com/sherifashraf74)
+- **Portfolio**: [Sherif Ashraf's Profile](https://sherifashraf74.github.io/)
 - **LinkedIn**: [Sherif Ashraf's LinkedIn](https://linkedin.com/in/cherif-ashraf)
