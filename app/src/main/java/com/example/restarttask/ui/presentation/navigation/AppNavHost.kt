@@ -17,13 +17,24 @@ fun MainApp(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    val hideBottomBarRoutes = listOf(
+        Routes.Welcome,
+        Routes.Tutorial1,
+        Routes.Tutorial2,
+        Routes.Tutorial3,
+        Routes.Tutorial4,
+        Routes.Tutorial5
+    )
     Scaffold(
         bottomBar = {
-            if (currentRoute != Routes.Welcome) {
-                MainNavigationBar(navController = navController, currentRoute = currentRoute ?: "")
+            if (currentRoute !in hideBottomBarRoutes) {
+                if (currentRoute != null) {
+                    MainNavigationBar(navController = navController, currentRoute = currentRoute)
+                }
             }
         }
-    ) {
+    )
+    {
         MainNavGraph(navController = navController)
     }
 }

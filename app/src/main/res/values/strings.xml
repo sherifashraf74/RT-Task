@@ -12,4 +12,8 @@
     <string name="suggested_study_partners">Suggested Study Partners</string>
     <string name="tools">Tools</string>
     <string name="profile">Profile</string>
+    <string name="intro_txt">Welcome to: how to use and enjoy Examate</string>
+    <string name="intro_txt2">Tap anywhere on the screen to continue</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
 </resources>

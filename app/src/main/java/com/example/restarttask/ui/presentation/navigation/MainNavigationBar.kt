@@ -1,11 +1,9 @@
 package com.example.restarttask.ui.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
@@ -27,13 +25,12 @@ fun MainNavigationBar(
 ) {
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
-        containerColor = Color.White, // Set the background color of the navigation bar
-        tonalElevation = 0.dp // No elevation (flat)
+        containerColor = Color.White,
+        tonalElevation = 0.dp
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
-        // Define your navigation items
         val navItems = listOf(
             NavigationItem(Routes.Home, R.drawable.home_icon_active, R.drawable.home_icon_not_active, "Home"),
             NavigationItem(Routes.Connect, R.drawable.connect_icon_active, R.drawable.connect_icon_not_active, "Connect"),
@@ -42,29 +39,25 @@ fun MainNavigationBar(
             NavigationItem(Routes.Profile, R.drawable.profile_icon_active, R.drawable.profile_icon_not_active, "Profile")
         )
 
-        // Iterate over each nav item and create NavigationBarItem
+
         navItems.forEach { item ->
             NavigationBarItem(
-                selected = currentRoute == item.route, // Check if the route matches
+                selected = currentRoute == item.route,
                 onClick = {
-                    // Navigate only if not already at the selected route
                     if (currentRoute != item.route) {
                         navController.navigate(item.route) {
-                            // Optionally clear the back stack when navigating to a different screen
                             popUpTo(Routes.Home) { saveState = true }
                             launchSingleTop = true
                         }
                     }
                 },
                 icon = {
-                    // Update icon based on selection
                     Icon(
                         painter = painterResource(id = if (currentRoute == item.route) item.activeIcon else item.inactiveIcon),
                         contentDescription = item.label
                     )
                 },
                 label = {
-                    // Change text color based on selection
                     Text(
                         text = item.label,
                         fontSize = 10.sp,
@@ -72,7 +65,6 @@ fun MainNavigationBar(
                         fontFamily = MaterialTheme.typography.titleSmall.fontFamily
                     )
                 },
-                // Customize colors to remove default selection indicator
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Unspecified,
                     unselectedIconColor = Color.Unspecified,
@@ -80,7 +72,7 @@ fun MainNavigationBar(
                     unselectedTextColor = Color(0xFF9CA3AF), // Color when not selected
                     indicatorColor = Color.Transparent
                 ),
-                alwaysShowLabel = true // Ensure the label always shows
+                alwaysShowLabel = true
             )
         }
     }

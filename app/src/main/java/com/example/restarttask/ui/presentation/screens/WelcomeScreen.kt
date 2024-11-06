@@ -7,10 +7,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.restarttask.R
 import com.example.restarttask.ui.presentation.navigation.Routes
 import com.example.restarttask.ui.presentation.screens.welcome_screen_items.saveFullName
 
@@ -31,21 +33,23 @@ fun NameInputScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        OutlinedTextField(textStyle = TextStyle(fontStyle = MaterialTheme.typography.titleSmall.fontStyle,
+        OutlinedTextField(shape = MaterialTheme.shapes.small,
+            textStyle = TextStyle(fontStyle = MaterialTheme.typography.titleSmall.fontStyle,
             color = MaterialTheme.colorScheme.primary),
             value = firstName,
             onValueChange = { firstName = it },
-            label = { Text("First Name") },
+            label = { Text(stringResource(R.string.first_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(textStyle = TextStyle(fontStyle = MaterialTheme.typography.titleSmall.fontStyle,
+        OutlinedTextField(shape = MaterialTheme.shapes.small,
+            textStyle = TextStyle(fontStyle = MaterialTheme.typography.titleSmall.fontStyle,
             color = MaterialTheme.colorScheme.primary),
             value = lastName,
             onValueChange = { lastName = it },
-            label = { Text("Last Name") },
+            label = { Text(stringResource(R.string.last_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -58,7 +62,7 @@ fun NameInputScreen(
                 // Save the full name in SharedPreferences
                 saveFullName(context, concatenatedName)
                 fullName = concatenatedName
-                navController.navigate(Routes.Home)
+                navController.navigate(Routes.HomeTutorial)
             },
             modifier = Modifier.fillMaxWidth()
         ) {

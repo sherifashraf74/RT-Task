@@ -59,16 +59,16 @@ dependencies {
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
     implementation(libs.androidx.room.runtime)
-    //LocalDateTime
+// LocalDateTime
     implementation(libs.threetenabp)
     implementation(libs.androidx.runtime.livedata)
     annotationProcessor(libs.androidx.room.compiler)
-    //noinspection KaptUsageInsteadOfKsp
+//noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.navigation.compose)
-    implementation (libs.lottie.compose)
+    implementation(libs.lottie.compose)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
@@ -76,36 +76,24 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation (libs.accompanist.permissions)
+    implementation(libs.accompanist.permissions)
 
-    // retrofit gson
+// Retrofit Gson
     implementation(libs.converter.gson)
 
-    // room
-//    val room_version = "2.6.1"
-
-
+// Room
     implementation(libs.androidx.room.ktx)
-//    kapt("androidx.room:room-compiler:$room_version")
 
-    implementation (libs.coil.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif) // Keep if you need GIF support
 
-    implementation(libs.coil.gif)
+// Extended icons
+    implementation(libs.androidx.material.icons.extended)
 
-    // extended icons
-    implementation (libs.androidx.material.icons.extended)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.core.ktx)
-
-//    implementation (libs.accompanist.navigation.animation)
-    implementation (libs.androidx.ui)
-
+// Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.android.compiler)
@@ -117,7 +105,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.coil.svg)
+
+    implementation(libs.coil.svg) // If you need SVG support
+
 
 //    implementation(libs.hilt.android.v248)
 //    kapt(libs.hilt.compiler.v248)

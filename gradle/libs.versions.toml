@@ -1,6 +1,9 @@
 [versions]
+
 accompanistNavigationAnimation = "<version>"
+accompanistSystemUiController = "0.24.13"
 accompanistPermissions = "0.36.0"
+accompanistTooltip = "0.24.13"
 agp = "8.6.0"
 coilCompose = "2.7.0"
 coilGif = "2.7.0"
@@ -35,8 +38,12 @@ runtimeLivedata = "1.7.5"
 
 
 [libraries]
+
+accompanist-appcompat-theme = { module = "com.google.accompanist:accompanist-appcompat-theme", version.ref = "accompanistNavigationAnimation" }
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanistNavigationAnimation" }
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistTooltip" }
+accompanist-tooltip = { module = "com.google.accompanist:accompanist-tooltip", version.ref = "accompanistTooltip" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
