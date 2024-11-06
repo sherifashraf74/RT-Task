@@ -7,7 +7,7 @@ Welcome to my submission for the Android Developer assignment at Restart Technol
 ### 📱 Preview of the App
 
 <p align="center">
-  <img src="https://link-to-your-preview-video-or-gif" alt="App Preview" width="600">
+  <img src="https://github.com/user-attachments/assets/90ee9100-3e7b-40ff-9f1a-084a08cc1fdc" alt="App Preview" width="600">
 </p>
 
 ---
