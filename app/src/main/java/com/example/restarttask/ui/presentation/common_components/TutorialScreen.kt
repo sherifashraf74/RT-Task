@@ -99,7 +99,7 @@ fun HomeTutorial(
                     }
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
-                        "Study Plan",
+                        stringResource(R.string.study_plan),
                         style = MaterialTheme.typography.bodyLarge.copy(fontSize = 20.sp),
                         color = MaterialTheme.colorScheme.onError
                     )
@@ -108,36 +108,38 @@ fun HomeTutorial(
                         modifier = Modifier
                             .fillMaxSize()
                     )
+
                 }
-                if (showOverlay) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Black.copy(alpha = 0.9f))
-                            .clickable {
-                                navController.navigate(Routes.Tutorial1)
-                            }
-                            .zIndex(1f)
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = stringResource(R.string.intro_txt),
-                                color = Color.White,
-                                fontFamily = MaterialTheme.typography.titleSmall.fontFamily,
-                                fontSize = 12.sp
-                            )
-                            Text(
-                                stringResource(R.string.intro_txt2),
-                                color = MaterialTheme.colorScheme.primary,
-                                fontFamily = MaterialTheme.typography.titleSmall.fontFamily,
-                                fontSize = 12.sp
-                            )
+
+            }
+            if (showOverlay) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.9f))
+                        .clickable {
+                            navController.navigate(Routes.Tutorial1)
                         }
+                        .zIndex(1f)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = stringResource(R.string.intro_txt),
+                            color = Color.White,
+                            fontFamily = MaterialTheme.typography.titleSmall.fontFamily,
+                            fontSize = 12.sp
+                        )
+                        Text(
+                            stringResource(R.string.intro_txt2),
+                            color = MaterialTheme.colorScheme.primary,
+                            fontFamily = MaterialTheme.typography.titleSmall.fontFamily,
+                            fontSize = 12.sp
+                        )
                     }
                 }
             }
